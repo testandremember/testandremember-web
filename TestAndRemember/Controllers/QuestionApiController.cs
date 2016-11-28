@@ -25,7 +25,13 @@ namespace TestAndRemember.Controllers
         [HttpGet]
         public IEnumerable<Question> GetQuestion()
         {
-            return _context.Question;
+            //            return _context.Question;
+          
+                var questions = _context.Question
+                    .Include(question => question.QuestionSet)
+                    .ToList();
+            return questions;
+            
         }
 
         // GET: api/QuestionApi/5
