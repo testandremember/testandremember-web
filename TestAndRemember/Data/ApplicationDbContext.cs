@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace TestAndRemember.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString =
-                "User ID=sa;Password=postgres;Host=localhost;Port=5432;Database=testandremember;Pooling=true;";
+                "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=testandremember;Pooling=true;";
             optionsBuilder.UseNpgsql(connectionString);
         }
         
@@ -34,5 +34,10 @@ namespace TestAndRemember.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+        
+        public DbSet<Movie> Movie { get; set; }
+        // NOTE: The following lines are required to make the tables actually be added to DB.
+        public DbSet<QuestionSet> QuestionSet { get; set; }
+        public DbSet<Question> Question { get; set; }
     }
 }

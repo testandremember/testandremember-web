@@ -8,9 +8,10 @@ using TestAndRemember.Data;
 namespace TestAndRemember.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161128003923_MoviesTest")]
+    partial class MoviesTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
@@ -191,42 +192,6 @@ namespace TestAndRemember.Data.Migrations
                     b.ToTable("Movie");
                 });
 
-            modelBuilder.Entity("TestAndRemember.Models.Question", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Answer");
-
-                    b.Property<string>("ImagePath");
-
-                    b.Property<long?>("QuestionSetID");
-
-                    b.Property<string>("Title");
-
-                    b.Property<string>("Url");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("QuestionSetID");
-
-                    b.ToTable("Question");
-                });
-
-            modelBuilder.Entity("TestAndRemember.Models.QuestionSet", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long>("OwnerUserId");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("QuestionSet");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -262,13 +227,6 @@ namespace TestAndRemember.Data.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TestAndRemember.Models.Question", b =>
-                {
-                    b.HasOne("TestAndRemember.Models.QuestionSet", "QuestionSet")
-                        .WithMany()
-                        .HasForeignKey("QuestionSetID");
                 });
         }
     }
